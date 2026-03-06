@@ -19,7 +19,7 @@ export const userSchema = z.object({
     .max(255, "Apellido demasiado largo")
     .optional(),
 
-    role: z.enum(["USER", "ADMIN", "TECHNICIAN"])
+    role: z.enum(["USER", "ADMIN"])
     .optional(),
 
     banReason: z.string()

@@ -8,3 +8,16 @@ Content-Type: application/json
     "name": "braulio",
     "lastname": "chavez"
 }
+
+###
+POST http://localhost:8000/api/v1/auth/verify-acc?token=6c470729a2abd1e729ae726e0f17c5ab7be4cd8b1fefd0d3e748ad456204d10e
+
+
+###
+POST http://localhost:8000/api/v1/auth/login
+Content-Type: application/json
+
+{
+    "email": "brauliochaveza@gmail.com",
+    "password": "123456"
+}
