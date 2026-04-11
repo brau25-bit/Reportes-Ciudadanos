@@ -351,8 +351,7 @@ export async function emailService(email, token) {
         content,
       }),
     });
-
-    console.log("Verificacion")
+    
     return result;
   } catch (error) {
     console.error('Error in emailService (verify):', error);
@@ -431,7 +430,6 @@ export async function passwordService(email, token) {
     throw error;
   }
 }
-
 
 export async function notificationService({ email, title, oldStatus, newStatus }) {
     
