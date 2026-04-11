@@ -41,4 +41,37 @@ export class AuthController{
             return res.status(400).json({ message: error.message })
         }
     }
+
+    static async recoverPassword(req, res){
+        try {
+            const {email} = req.body
+
+            const result = await AuthService.recoverPassword({email})
+
+            res.status(200).json({
+                ok: true,
+                result
+            })
+        } catch (error) {
+            console.log(error.message)
+            return res.status(400).json({ message: error.message })
+        }
+    }
+
+    static async resetPassword(req, res){
+        try {
+            const {password} = req.body
+            const {token} = req.query
+
+            const result = await AuthService.resetPassword({token, password})
+
+            res.status(200).json({
+                ok: true,
+                result
+            })
+        } catch (error) {
+            console.log(error.message)
+            return res.status(400).json({ message: error.message })
+        }
+    }
 }

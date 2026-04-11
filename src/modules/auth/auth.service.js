@@ -1,7 +1,7 @@
 import prisma from '../../db/prisma.js'
 import hashService from '../../utils/hash.js'
 import jwtService from '../../utils/jwt.js'
-import { emailService, notificationService, passwordService } from '../../utils/emailService.js'
+import { emailService, passwordService } from '../../utils/emailService.js'
 import crypto from 'crypto'
 
 export class AuthService{
@@ -84,6 +84,67 @@ export class AuthService{
             })
 
             return {message: "Cuenta verificada exitosamente. Ya puedes iniciar sesión"}
+        } catch (error) {
+            console.error("Error in register service:", error);
+            throw error; 
+        }
+    }
+
+    static async recoverPassword({email}){
+        try {
+            const user = await prisma.user.findUnique({
+                where: {email: email}
+            })
+
+            if(!user) throw new Error('Credenciales invalidas')
+
+            const token = crypto.randomBytes(32).toString('hex')
+
+            const expiresIn = new Date()
+            expiresIn.setHours(expiresIn.getHours() + 1)
+
+            await prisma.user.update({
+                where: {id: user.id},
+                data: {
+                    resetToken: token,
+                    resetPasswordExpires: expiresIn
+                }
+            })
+
+            await passwordService(email, token)
+
+            return {message: "Un enlace ha sido enviado a tu email, desde el podras restaurar tu contraseña"}
+        } catch (error) {
+            console.error("Error in register service:", error);
+            throw error; 
+        }
+    }
+
+    static async resetPassword({token, password}){
+        try {
+            const user = await prisma.user.findUnique({
+                where: {resetToken: token}
+            })
+
+            if(!user) throw new Error("Credenciales invalidas")
+
+            const now = new Date()
+            if(user.resetPasswordExpires < now) {
+                throw new Error("El token ha expirado. Solicita un nuevo enlace de recuperación")
+            }
+
+            const newPassword = await hashService.hash(password)
+
+            await prisma.user.update({
+                where: {id: user.id},
+                data: {
+                    password: newPassword,
+                    resetToken: null,
+                    resetPasswordExpires: null
+                }
+            })
+
+            return {message: "Contraseña reestablecida correctamente"}
         } catch (error) {
             console.error("Error in register service:", error);
             throw error; 
