@@ -1,12 +1,13 @@
-import jwt from '../util/jwt.js'
+import jwt from '../utils/jwt.js'
 
 export async function verifyToken(req, res, next){
     try {
-
         const authHeader = req.headers.authorization
+
         if(!authHeader) return res.status(401).json({message: 'Token no proporcionado'})
 
         const token = req.headers.authorization.split(' ')[1]
+        
         if(!token) return res.status(401).json({message: 'Token no proporcionado'})
 
         const decodedToken = jwt.verify(token)
