@@ -58,7 +58,8 @@ export class AuthService{
                 user: {
                     email: user.email,
                     name: user.name,
-                    lastname: user.lastname
+                    lastname: user.lastname,
+                    role: user.role
                 }
             }
         } catch (error) {
@@ -73,6 +74,7 @@ export class AuthService{
             })
 
             if(!user) throw new Error("Credenciales invalidas")
+                
             const verifiedAccount = await prisma.user.update({
                 where: {id: user.id},
                 data: {
