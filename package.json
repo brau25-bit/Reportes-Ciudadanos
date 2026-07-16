@@ -8,24 +8,30 @@
     "start": "node --watch server.js",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate",
-    "prisma:studio": "prisma studio"
+    "prisma:studio": "prisma studio",
+    "seed": "node prisma/seed.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "dependencies": {
-    "@prisma/client": "^5.22.0",
-    "bcrypt": "^6.0.0",
+    "@prisma/client": "5.22.0",
+    "bcrypt": "6.0.0",
+    "chart.js": "4.5.1",
+    "chartjs-node-canvas": "5.0.0",
+    "cors": "2.8.6",
     "dotenv": "17.3.1",
     "express": "5.2.1",
-    "express-rate-limit": "8.2.1",
-    "jsonwebtoken": "^9.0.3",
-    "nodemailer": "^8.0.1",
-    "resend": "^6.9.2",
+    "express-rate-limit": "^8.5.2",
+    "jsonwebtoken": "9.0.3",
+    "multer": "^2.1.1",
+    "nodemailer": "8.0.5",
+    "puppeteer": "25.1.0",
+    "resend": "6.12.4",
     "zod": "4.3.6"
   },
   "devDependencies": {
-    "prisma": "^5.22.0"
+    "prisma": "5.22.0"
   }
 }
