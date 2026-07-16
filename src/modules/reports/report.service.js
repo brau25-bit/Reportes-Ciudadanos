@@ -1,9 +1,13 @@
-import prisma from "../../db/client.js";
-import { notificationService } from "../../util/email.js";
+import prisma from "../../db/prisma.js";
+import { notificationService } from "../../utils/emailService.js";
+import { isWithinTlahuac } from '../../utils/geoValidation.js'
 
 export class ReportService{
     static async createReports( data, userId ){
         try {
+
+            if(!isWithinTlahuac(data.latitude, data.longitude)) throw Error("Fuera de los limites de la delegacion")
+            
             const report = await prisma.report.create({
                 data: {
                     title: data.title,
@@ -24,6 +28,8 @@ export class ReportService{
                     }
                 }
             })
+
+            if(!report) throw Error("No se pudo crear")
 
             return report
         } catch (error) {
@@ -159,6 +165,8 @@ export class ReportService{
                     changedAt: 'desc'
                 }
             })
+
+            if(reportHistory.length == 0) throw Error("Sin historial de cambios")
 
             return reportHistory
         } catch (error) {

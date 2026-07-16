@@ -9,7 +9,9 @@ import { limiter } from "../../middleware/limiter.js";
 const reportRouter = Router()
 
 reportRouter.get('/', limiter, verifyToken, ReportController.getReports)
+
 reportRouter.get('/:id', limiter, verifyToken, ReportController.getReportsByID)
+
 reportRouter.get('/:id/history', limiter, verifyToken, authorization('ADMIN', 'USER'), ReportController.getReportsHistory)
 
 reportRouter.patch('/:id', limiter, verifyToken, authorization('USER'), validateSchema(partialReportSchema), ReportController.updateReports)
