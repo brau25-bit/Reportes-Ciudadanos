@@ -291,7 +291,7 @@ function divider() {
 }
 
 export async function emailService(email, token) {
-  const verifyUrl = `${process.env.BACKEND_URL}/api/v1/auth/verify-account?token=${token}`;
+  const verifyUrl = `${process.env.FRONT_URL}/verify-account?token=${token}`;
 
   const content = `
     <div style="text-align:center; margin-bottom: 32px;">
@@ -360,7 +360,7 @@ export async function emailService(email, token) {
 }
 
 export async function passwordService(email, token) {
-  const resetUrl = `${process.env.BACKEND_URL}/api/v1/auth/reset-password?token=${token}`;
+  const resetUrl = `${process.env.FRONT_URL}/reset-password?token=${token}`;
 
   const content = `
     <div style="text-align:center; margin-bottom: 32px;">
