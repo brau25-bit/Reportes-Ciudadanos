@@ -34,6 +34,36 @@ enum ReportCategory {
   OTHER
 }
 
+enum ApplicationType {
+  EVENTS
+  PYROTECHNICS
+  COMMERCIAL
+  RESIDENCY
+}
+
+enum ApplicationStatus {
+  DRAFT
+  SUBMITTED
+  IN_REVIEW
+  APPROVED
+  REJECTED
+  CANCELLED
+  DELETED
+}
+
+enum DocumentType {
+  IDENTIFICATION
+  PROOF_OF_ADDRESS
+  INSURANCE_POLICY
+  LAND_USE_CERTIFICATE
+  OTHER
+}
+
+enum PersonType {
+  INDIVIDUAL
+  LEGAL_ENTITY
+}
+
 model User {
   id        String  @id @default(uuid())
   email     String  @unique
@@ -63,6 +93,8 @@ model User {
 
   reports              Report[]
   reportStatusChanges  ReportStatusHistory[]
+  applications Application[] @relation("ApplicationOwner")
+  applicationStatusChanges ApplicationHistory[] @relation("ApplicationStatusChange")
 }
 
 model Report {
@@ -106,3 +138,75 @@ model ReportStatusHistory {
   changedAt     DateTime @default(now())
 }
 
+model Application {
+  id               String                @id @default(uuid())
+  folio            String             @unique
+  applicationType  ApplicationType
+  status           ApplicationStatus  @default(SUBMITTED)
+
+  requestDate      DateTime           @default(now())
+  resolutionDate   DateTime?
+
+  rejectionReason  String?
+  observations     String?
+
+  personType       PersonType
+  userId           String
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+
+  // Relations
+  user             User               @relation("ApplicationOwner",fields:      [userId], references: [id])
+
+  data             ApplicationData?
+  documents        Document[]
+  history          ApplicationHistory[]
+
+  @@index([applicationType])
+  @@index([status])
+}
+
+model ApplicationData {
+  id            String       @id @default(uuid())
+  applicationId String       @unique
+  data          Json
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  application   Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+}
+
+model Document {
+  id            String      @id @default(uuid())
+  applicationId String
+
+  documentType  DocumentType
+  fileName      String
+  filePath      String
+  mimeType      String
+  fileSize      Int
+
+  validated     Boolean  @default(false)
+
+  uploadedAt    DateTime @default(now())
+
+  application   Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+
+  @@index([applicationId])
+}
+
+model ApplicationHistory {
+  id             String                 @id @default(uuid())
+  applicationId  String
+  previousStatus ApplicationStatus?
+  newStatus      ApplicationStatus
+  action         String
+  createdAt      DateTime            @default(now())
+
+  changedById String?
+  changedBy   User? @relation("ApplicationStatusChange",fields: [changedById], references: [id])
+
+  application    Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+
+  @@index([applicationId])
+}
