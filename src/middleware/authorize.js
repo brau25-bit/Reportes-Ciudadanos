@@ -1,6 +1,10 @@
 export function authorization(...allowedRoles){
     return (req, res, next) => {
         try {
+
+            console.log(req.user.id)
+            console.log(req.user.role)
+            
             if(!req.user) {
                 return res.status(401).json({
                     message: 'No autenticado'
