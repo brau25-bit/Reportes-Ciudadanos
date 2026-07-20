@@ -18,7 +18,7 @@ POST http://localhost:8000/api/v1/auth/login
 Content-Type: application/json
 
 {
-    "email": "brauliochavez2509@gmail.com",
+    "email": "brauliochaveza@gmail.com",
     "password": "123456"
 }
 
@@ -39,37 +39,34 @@ Content-Type: application/json
 }
 
 ### ---------------------------------REPORTS ---------------------------------
-/*
-    si se hace alguna peticion a algunos de los siguientes endpoints, primero se debe de iniciar sesion y colocar el token que dara al hacer lo mismo
-*/
-POST http://localhost:3000/api/v1/reports
+POST http://localhost:8000/api/v1/reports
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEzNTk1NzVjLTY2YmQtNDY5Ny05YjIzLTkwNzBlMjJkOGI3ZCIsInJvbGUiOiJBRE1JTiIsImNhblJlcG9ydCI6dHJ1ZSwiaWF0IjoxNzY4MjQxNTc5LCJleHAiOjE3NjgzMjc5Nzl9.uf9tSua7UEeBYEjL8sRIdsOG317dl5lizbucC1E-MsE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDY3NTRmLWYzZDktNGUwMy04ZDQ1LWY4NzdhMjUzOTcxYyIsInJvbGUiOiJVU0VSIiwiY2FuUmVwb3J0Ijp0cnVlLCJpYXQiOjE3NzY4MDE1ODEsImV4cCI6MTc3Njg4Nzk4MX0.RPvQS0_CzT2BAIeXgSkYnn2Qgv2HbpMC3zW8twPGEvM
 
 {
     "title": "Reporte de problemas de basura",
     "description": "Reporte detallado de problemas visualizados en la zona.",
     "category": "OTHER",
-    "latitude": 19.4326,
-    "longitude": -99.1332
+    "latitude": 19.2797,
+    "longitude": -99.0054
 }
 
 ###
-GET http://localhost:3000/api/v1/reports?page=12
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEzNTk1NzVjLTY2YmQtNDY5Ny05YjIzLTkwNzBlMjJkOGI3ZCIsInJvbGUiOiJBRE1JTiIsImNhblJlcG9ydCI6dHJ1ZSwiaWF0IjoxNzY4MjQxODMwLCJleHAiOjE3NjgzMjgyMzB9.KcSElrrq1UQusCjyerP7A8zRwaz7hV80pIYwyzJrUaY
+GET http://localhost:8000/api/v1/reports
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDY3NTRmLWYzZDktNGUwMy04ZDQ1LWY4NzdhMjUzOTcxYyIsInJvbGUiOiJVU0VSIiwiY2FuUmVwb3J0Ijp0cnVlLCJpYXQiOjE3NzY4MDE1ODEsImV4cCI6MTc3Njg4Nzk4MX0.RPvQS0_CzT2BAIeXgSkYnn2Qgv2HbpMC3zW8twPGEvM
 
 ###
-GET http://localhost:3000/api/v1/reports?status=COMPLETED
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEzNTk1NzVjLTY2YmQtNDY5Ny05YjIzLTkwNzBlMjJkOGI3ZCIsInJvbGUiOiJBRE1JTiIsImNhblJlcG9ydCI6dHJ1ZSwiaWF0IjoxNzY4MjQxODMwLCJleHAiOjE3NjgzMjgyMzB9.KcSElrrq1UQusCjyerP7A8zRwaz7hV80pIYwyzJrUaY
+GET http://localhost:8000/api/v1/reports?status=PENDING
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDY3NTRmLWYzZDktNGUwMy04ZDQ1LWY4NzdhMjUzOTcxYyIsInJvbGUiOiJVU0VSIiwiY2FuUmVwb3J0Ijp0cnVlLCJpYXQiOjE3NzY2MTUxOTMsImV4cCI6MTc3NjcwMTU5M30.zAGuBizjAfs4YLEi0GAQi2Y2ynPBy2itI0IG67heZfI
 
 ###
-GET http://localhost:3000/api/v1/reports/fe75c9d7-6dfa-46b9-a847-b194bd9cc1c8
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM5ZDY1YzhmLWMxODEtNDYzYi05YTg1LTU1YWFiOTFkMzJmMyIsInJvbGUiOiJBRE1JTiIsImNhblJlcG9ydCI6dHJ1ZSwiaWF0IjoxNzY3NjM2OTEyLCJleHAiOjE3Njc3MjMzMTJ9.aQcIpoxeW3coAm7uRYEbKX9bLXHgw5vOHp1lW-IWZT4
+GET http://localhost:8000/api/v1/reports/b5221ffc-51b0-48f1-821a-423a3c362f3e
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDY3NTRmLWYzZDktNGUwMy04ZDQ1LWY4NzdhMjUzOTcxYyIsInJvbGUiOiJVU0VSIiwiY2FuUmVwb3J0Ijp0cnVlLCJpYXQiOjE3NzY4MDE1ODEsImV4cCI6MTc3Njg4Nzk4MX0.RPvQS0_CzT2BAIeXgSkYnn2Qgv2HbpMC3zW8twPGEvM
 
 ###
-PATCH http://localhost:3000/api/v1/reports/8bdfac63-fed9-417e-bc1f-fc16e126d71f
+PATCH http://localhost:8000/api/v1/reports/b5221ffc-51b0-48f1-821a-423a3c362f3e
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3NmRhMjZiLWUyZDQtNDE5ZS05ZjIzLTA3OTM3ZWI1NTM2MyIsInJvbGUiOiJVU0VSIiwiY2FuUmVwb3J0Ijp0cnVlLCJpYXQiOjE3NjcyNDAxMDMsImV4cCI6MTc2NzMyNjUwM30.F4Imt6z-7BgHgtI_PUX_bmmd5i8eSaKgLzs_rxwgSs4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDY3NTRmLWYzZDktNGUwMy04ZDQ1LWY4NzdhMjUzOTcxYyIsInJvbGUiOiJVU0VSIiwiY2FuUmVwb3J0Ijp0cnVlLCJpYXQiOjE3NzY4MDE1ODEsImV4cCI6MTc3Njg4Nzk4MX0.RPvQS0_CzT2BAIeXgSkYnn2Qgv2HbpMC3zW8twPGEvM
 
 {
     "title": "Reporte actualizado de problemas de basura",
@@ -79,18 +76,18 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3NmRhMjZiL
 }
 
 ###
-PATCH http://localhost:3000/api/v1/reports/8bdfac63-fed9-417e-bc1f-fc16e126d71f/delete
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3NmRhMjZiLWUyZDQtNDE5ZS05ZjIzLTA3OTM3ZWI1NTM2MyIsInJvbGUiOiJVU0VSIiwiY2FuUmVwb3J0Ijp0cnVlLCJpYXQiOjE3NjcyNDAxMDMsImV4cCI6MTc2NzMyNjUwM30.F4Imt6z-7BgHgtI_PUX_bmmd5i8eSaKgLzs_rxwgSs4
+PATCH http://localhost:8000/api/v1/reports/b5221ffc-51b0-48f1-821a-423a3c362f3e/delete
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDY3NTRmLWYzZDktNGUwMy04ZDQ1LWY4NzdhMjUzOTcxYyIsInJvbGUiOiJVU0VSIiwiY2FuUmVwb3J0Ijp0cnVlLCJpYXQiOjE3NzY4MDE1ODEsImV4cCI6MTc3Njg4Nzk4MX0.RPvQS0_CzT2BAIeXgSkYnn2Qgv2HbpMC3zW8twPGEvM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
 
 ###
-PATCH  http://localhost:3000/api/v1/reports/92dda4e6-4cef-425c-a3d4-4c26f829cea6/status
+PATCH  http://localhost:8000/api/v1/reports/92dda4e6-4cef-425c-a3d4-4c26f829cea6/status
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM5ZDY1YzhmLWMxODEtNDYzYi05YTg1LTU1YWFiOTFkMzJmMyIsInJvbGUiOiJBRE1JTiIsImNhblJlcG9ydCI6dHJ1ZSwiaWF0IjoxNzY3MjQ4MDM4LCJleHAiOjE3NjczMzQ0Mzh9.pWMdJOGgZno2Em1COhOtHpjIerSmDHfWHlDndiZa8gw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDY3NTRmLWYzZDktNGUwMy04ZDQ1LWY4NzdhMjUzOTcxYyIsInJvbGUiOiJVU0VSIiwiY2FuUmVwb3J0Ijp0cnVlLCJpYXQiOjE3NzY2MTUxOTMsImV4cCI6MTc3NjcwMTU5M30.zAGuBizjAfs4YLEi0GAQi2Y2ynPBy2itI0IG67heZfI
 
 {
     "status": "COMPLETED"
 }
 
 ###
-GET http://localhost:3000/api/v1/reports/c4169300-5d08-40c5-be45-f853d70c6667/history
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM5ZDY1YzhmLWMxODEtNDYzYi05YTg1LTU1YWFiOTFkMzJmMyIsInJvbGUiOiJBRE1JTiIsImNhblJlcG9ydCI6dHJ1ZSwiaWF0IjoxNzY3MjQwMzA3LCJleHAiOjE3NjczMjY3MDd9.YBCNKrVifz_n1KESFKbY3guQP6CbjeoibJnn0KPwDWU 
+GET http://localhost:8000/api/v1/reports/8700cf80-f6d6-475c-b947-f499badc1360/history
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDY3NTRmLWYzZDktNGUwMy04ZDQ1LWY4NzdhMjUzOTcxYyIsInJvbGUiOiJVU0VSIiwiY2FuUmVwb3J0Ijp0cnVlLCJpYXQiOjE3NzY2MTUxOTMsImV4cCI6MTc3NjcwMTU5M30.zAGuBizjAfs4YLEi0GAQi2Y2ynPBy2itI0IG67heZfI

@@ -1,0 +1,8 @@
+doc
+.vscode
+generated
+node_modules
+uploads
+.env
+api.http
+Dockerfile
